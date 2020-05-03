@@ -5,6 +5,12 @@ import (
 	"github.com/pmanickam81/golang-microservices/api/utils"
 )
 
-func GetUser(userId int64) (*domain.User, *utils.ApplicationError){
-	return domain.GetUser(userId)
+var (
+	UserService userService
+)
+
+type userService struct{}
+
+func (u *userService) GetUser(userId int64) (*domain.User, *utils.ApplicationError) {
+	return domain.UserDAO.GetUser(userId)
 }
